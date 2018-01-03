@@ -1,4 +1,4 @@
-package w3c.topN.bolt;
+package w3c.grouping.countword1.bolts;
 
 import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.BasicOutputCollector;
@@ -6,23 +6,25 @@ import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.topology.base.BaseBasicBolt;
 import org.apache.storm.tuple.Tuple;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
 
 /**
- * Created by renwujie on 2018/01/02 at 11:03
+ * Created by renwujie on 2018/01/03 at 10:33
  */
 public class WordWriter extends BaseBasicBolt {
 
     private FileWriter fileWriter;
 
+
     @Override
     public void prepare(Map stormConf, TopologyContext context) {
         try {
-            fileWriter = new FileWriter("data/topN/output/" + System.currentTimeMillis());
+            fileWriter = new FileWriter(new File("data/w3c/grouping/countword1/output/" + this));
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("写出到本地错误!!!");
         }
     }
 
